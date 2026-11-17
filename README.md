@@ -17,6 +17,7 @@ Kamu ──info loker──▶ Claude ──get_applicant_profile──▶ Loker
 | `update_application_draft` | Menulis ulang draft (untuk revisi) |
 | `get_application_draft` / `list_application_drafts` | Melihat draft |
 | `delete_application_draft` | Menghapus draft |
+| `list_uploaded_files` / `delete_uploaded_file` | Melihat dan menghapus file lampiran yang kamu upload (cover letter, portofolio, gambar) |
 | `check_application_history` | Mengecek apakah kamu pernah melamar atau dibalas oleh perusahaan tertentu |
 | Prompt `tulis_lamaran` | Template cepat: tempel info loker, lalu Claude menjalankan seluruh alurnya |
 
@@ -96,6 +97,16 @@ Cukup kirim info loker:
 Claude akan membaca profilmu, mengecek riwayat lamaran, menyusun email, lalu membuat draft dan memberikan link-nya. Kalau perlu revisi, minta saja: *"buat lebih singkat dan tonjolkan pengalaman Kafka"*. Claude akan memanggil `update_application_draft`.
 
 Kamu juga bisa melampirkan screenshot poster loker. Claude membaca teksnya lalu menjalankan alur yang sama.
+
+## Lampiran custom (cover letter, dll.)
+
+Untuk dokumen yang berbeda di tiap lamaran, upload sendiri lewat halaman:
+
+**`https://<nama-app>.vercel.app/upload/<MCP_SECRET>`**
+
+Format yang diterima: PDF, PNG/JPG/WebP, DOC/DOCX, maksimal 20 MB. File disimpan di Vercel Blob dengan akses **private**. Setelah upload, sebutkan nama filenya ke Claude, misalnya *"lampirkan Cover_Letter_PT_ABC.pdf juga"*. Claude akan memanggil `create_application_draft` dengan `uploaded_files`.
+
+Setup sekali: di Vercel → **Storage → Create → Blob**, pilih akses **Private**, lalu **Connect** ke project `loker-mcp`. Langkah ini otomatis membuat env `BLOB_READ_WRITE_TOKEN`. Setelah itu lakukan redeploy.
 
 ## Pengembangan lokal
 
