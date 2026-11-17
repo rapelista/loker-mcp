@@ -1,0 +1,153 @@
+{
+  "nama_lengkap": "Azhar Salsabila Naqiyah",
+  "email": "azharsalsabilan@gmail.com",
+  "telepon": "+62 821 4338 8797",
+  "linkedin": "https://www.linkedin.com/in/azharsalsabila/",
+
+  "headline": "Lulusan S1 Pendidikan Teknologi Informasi Universitas Brawijaya (IPK 3,68) dengan pengalaman di Safety & Fire Fighting (K3) dan Administrasi Perkantoran; bersertifikasi BNSP Human Capital Staff dan Pengelola Administrasi Perkantoran",
+  "ringkasan": "Berpengalaman meningkatkan kepatuhan K3 serta mengelola data dan dokumen operasional dengan akurasi tinggi. Bersertifikasi Human Capital dan Administrasi Perkantoran, memiliki komunikasi yang kuat dan dedikasi tinggi untuk mendukung efisiensi dan keselamatan lingkungan kerja.",
+
+  "pengalaman": [
+    {
+      "posisi": "Safety and Fire Fighting",
+      "perusahaan": "KT&G TSPM",
+      "lokasi": "Rembang, Jawa Timur",
+      "periode": "Juni 2026 - sekarang",
+      "pencapaian": [
+        "Mempertahankan Zero Incident (nol kecelakaan kerja dan kebakaran) di area operasional",
+        "Menjaga kelayakan 235 APAR dan 146 hidran 100% siap pakai melalui inspeksi rutin bulanan",
+        "Mengidentifikasi dan melaporkan 250+ temuan bahaya (unsafe condition/action) dengan 90% tingkat penyelesaian corrective action bersama departemen terkait",
+        "Meningkatkan kepatuhan 5R sebesar 75% di area pabrik dan gudang melalui inspeksi rutin dan penilaian berkala",
+        "Membuat dan memperbarui dokumen HIRAC dan 10+ Work Instruction untuk pekerjaan berisiko tinggi di area produksi dan gudang",
+        "Memeriksa dan menyetujui 45+ izin kerja (work permit) per bulan",
+        "Membuat skenario simulasi darurat (emergency drill)",
+        "Memimpin 5+ sesi HSE Talk untuk total 100+ pekerja",
+        "Melatih 150+ pekerja dan kontraktor melalui safety induction, meningkatkan kedisiplinan penggunaan APD hingga 95%",
+        "Memasang dan memperbarui 80+ rambu keselamatan sesuai standar K3",
+        "Menyelesaikan 100% investigasi near miss/kecelakaan kerja dan menerbitkan 10+ dokumen HSE Alert"
+      ]
+    },
+    {
+      "posisi": "Staff Admin",
+      "perusahaan": "PhysioJourney (klinik fisioterapi)",
+      "lokasi": "Malang, Jawa Timur",
+      "periode": "Juli 2025 - Juni 2026",
+      "pencapaian": [
+        "Mengelola database dan rekam medis 250+ pasien per bulan dengan akurasi data 99%",
+        "Menurunkan ketidakhadiran pasien hingga 20% melalui sistem pengingat jadwal (appointment reminder)",
+        "Menjaga akurasi laporan kas harian 100% tanpa selisih pencatatan selama 1 tahun",
+        "Meningkatkan engagement media sosial klinik 30% melalui 10+ konten edukasi dan promosi per bulan",
+        "Mempertahankan kepuasan layanan front office pasien 95%"
+      ]
+    }
+  ],
+
+  "organisasi": [
+    {
+      "peran": "Wakil Kepala Divisi Koordinator Lapangan, GENESIS 7.0 (orientasi mahasiswa baru)",
+      "institusi": "Universitas Brawijaya",
+      "periode": "Jul 2021 - Des 2021",
+      "pencapaian": [
+        "Mengelola dan mengarahkan 100+ mahasiswa baru agar kegiatan berjalan tertib dan tepat waktu",
+        "Merancang sistem \"Presensi Pagi\" yang meningkatkan keterlibatan dan disiplin panitia hingga 85%",
+        "Mengoordinasi 3 staf dalam perencanaan dan eksekusi kegiatan lapangan"
+      ]
+    }
+  ],
+
+  "pelatihan": [
+    {
+      "nama": "Pengelola Administrasi Perkantoran (260 JP, SKKNI No. 183 Tahun 2016)",
+      "institusi": "UPT Balai Latihan Kerja Pasuruan",
+      "periode": "Feb 2025 - Apr 2025",
+      "materi": "Pengelolaan dokumen dan arsip, MS Word/Excel/PowerPoint, kas kecil, pelayanan pelanggan dan komunikasi telepon, K3 perkantoran, on the job training"
+    }
+  ],
+
+  "pendidikan": [
+    {
+      "gelar": "S1 Pendidikan Teknologi Informasi (S.Pd.)",
+      "institusi": "Universitas Brawijaya, Fakultas Ilmu Komputer",
+      "lulus": "9 Januari 2024",
+      "ipk": "3,68 / 4,00 (Sangat Memuaskan)",
+      "skripsi": "Pengaruh implementasi flipped classroom berbasis Google Sites terhadap hasil belajar siswa (studi kasus SMK Negeri 12 Malang)"
+    }
+  ],
+
+  "sertifikasi": [
+    "Sertifikat Kompetensi BNSP - Staf Sumber Daya Manusia / Human Capital Staff (LSP MSDM Universal, Feb 2026, berlaku 3 tahun): uraian jabatan, administrasi pengupahan, jaminan sosial, kebijakan MSDM",
+    "Sertifikat Kompetensi BNSP - Pengelola Administrasi Perkantoran (LSP BLKI Singosari, Apr 2025, berlaku 3 tahun)",
+    "Human Capital Staff - Human Capital University (Jan 2026): job analysis & job description, SOP ISO 9001:2015, compensation & benefit (upah, lembur, PPh 21, BPJS), UU Ketenagakerjaan (PKWT, PKWTT, pesangon, cuti), rekrutmen & seleksi (BEI)",
+    "Human Resource Staff - Quantum HR Indonesia",
+    "Akuntansi - MySkill",
+    "MS Excel Mastery from Basic to Advance - Upskillz Indonesia",
+    "Microsoft Office Desktop Application - Trust Training Partners Indonesia"
+  ],
+
+  "keahlian": {
+    "teknis": [
+      "Microsoft Word, Excel, PowerPoint",
+      "Administrasi & pengarsipan data (digital dan fisik)",
+      "Accurate (dasar: input kas masuk/keluar, laporan keuangan)",
+      "Adobe Illustrator, Canva, Filmora",
+      "K3: HIRAC, work permit, inspeksi APAR/hidran, investigasi insiden, safety induction, 5R",
+      "HR: rekrutmen & seleksi, job description, payroll dasar, BPJS, PPh 21"
+    ],
+    "non_teknis": ["Kerja sama tim", "Komunikasi", "Adaptif", "Manajemen waktu"],
+    "bahasa": [
+      "Indonesia (native)",
+      "Inggris (listening & reading intermediate; speaking & writing basic)"
+    ]
+  },
+
+  "preferensi_kerja": {
+    "posisi_target": [
+      "HR / Human Capital Staff",
+      "Staff Administrasi / Admin Kantor",
+      "HSE / K3 / Safety Officer"
+    ],
+    "catatan": "Disimpulkan dari CV; sesuaikan bila perlu"
+  },
+
+  "lampiran": [
+    {
+      "kunci": "cv",
+      "file": "CV_Azhar_Salsabila_Naqiyah.pdf",
+      "deskripsi": "CV saja (2 halaman)",
+      "default": true
+    },
+    {
+      "kunci": "berkas_lengkap",
+      "file": "Berkas_Lamaran_Azhar_Salsabila_Naqiyah.pdf",
+      "deskripsi": "Satu PDF berisi CV + ijazah + transkrip + sertifikat BNSP (8 halaman, 3,3 MB). Pakai bila iklan meminta berkas dijadikan satu file."
+    },
+    {
+      "kunci": "ijazah_transkrip",
+      "file": "Ijazah_Transkrip_Azhar_Salsabila_Naqiyah.pdf",
+      "deskripsi": "Ijazah S1 dan transkrip nilai Universitas Brawijaya"
+    },
+    {
+      "kunci": "sertifikat",
+      "file": "Sertifikat_BNSP_Azhar_Salsabila_Naqiyah.pdf",
+      "deskripsi": "Sertifikat kompetensi BNSP: Human Capital Staff dan Pengelola Administrasi Perkantoran"
+    }
+  ],
+
+  "gaya_email": {
+    "bahasa_default": "Bahasa Indonesia formal; pakai Bahasa Inggris hanya bila iklan berbahasa Inggris (jaga kalimat tetap sederhana dan benar)",
+    "nada": "Sopan, profesional, antusias, tidak berlebihan",
+    "panjang": "150-250 kata untuk badan email",
+    "format_subjek": "Lamaran Pekerjaan - [Posisi] - Azhar Salsabila Naqiyah  (WAJIB ikuti format subjek dari iklan jika ada)",
+    "aturan": [
+      "Buka dengan 'Yth. Bapak/Ibu HRD [Nama Perusahaan]' dan sebutkan posisi serta sumber info lowongan",
+      "Sesuaikan penekanan dengan posisi: HR -> sertifikasi BNSP Human Capital dan kompetensi rekrutmen/payroll/BPJS; Admin -> pengalaman Staff Admin dan sertifikasi Pengelola Administrasi Perkantoran; HSE/K3 -> pengalaman Safety and Fire Fighting",
+      "Pilih 2-3 pencapaian paling relevan dan sertakan angkanya",
+      "Jangan mengarang pengalaman, keahlian, atau sertifikat yang tidak ada di profil",
+      "Jangan cantumkan ekspektasi gaji kecuali diminta di iklan",
+      "Lampiran: default CV. Jika iklan meminta ijazah/transkrip/sertifikat, tambahkan lampiran yang sesuai; jika meminta 'dijadikan 1 file PDF', pakai berkas_lengkap saja",
+      "Sebutkan dokumen yang dilampirkan di badan email",
+      "Tutup dengan harapan dapat mengikuti tahap seleksi selanjutnya, ucapan terima kasih, dan tanda tangan lengkap"
+    ],
+    "tanda_tangan": "Hormat saya,\n\nAzhar Salsabila Naqiyah\n+62 821 4338 8797 | azharsalsabilan@gmail.com\nlinkedin.com/in/azharsalsabila"
+  }
+}
