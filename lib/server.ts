@@ -11,7 +11,7 @@ import {
   searchMessages,
   updateDraft,
 } from "./gmail";
-import { blobConfigured, deleteUpload, listUploads, loadUpload, uploadPageUrl } from "./uploads";
+import { textToPdf } from "./pdf";
 import {
   describeAttachments,
   loadAttachment,
@@ -28,10 +28,42 @@ Alur kerja saat pengguna mengirim info lowongan (teks, poster yang sudah dibaca,
 3. Ekstrak dari lowongan: perusahaan, posisi, email tujuan, format subjek yang diminta, dokumen yang diminta, bahasa iklan.
 4. Susun email yang mencocokkan kualifikasi lowongan dengan pengalaman nyata di profil. Jangan mengarang fakta.
 5. Panggil create_application_draft. Lalu berikan ringkasan singkat + link draft ke pengguna.
-Lampiran tambahan (cover letter, portofolio khusus, gambar, dll.) diupload pengguna sendiri lewat halaman upload; lampirkan dengan uploaded_files memakai nama persis dari list_uploaded_files. Jika iklan meminta dokumen yang belum ada di profil maupun upload, beri tahu pengguna dan berikan link halaman upload (dari list_uploaded_files).
+Lampiran custom: bila iklan atau pengguna meminta dokumen yang belum ada di profil (cover letter/surat lamaran, motivation letter, esai, jawaban pertanyaan), tulis isinya dari profil & lowongan lalu kirim lewat custom_attachments (server membuat PDF). Gabungkan dengan lampiran profil sesuai kebutuhan. Bila cover letter dilampirkan terpisah, badan email cukup singkat.
 Jika email tujuan tidak ada di lowongan (mis. harus lewat portal), jangan buat draft; beri tahu pengguna dan tawarkan teks lamaran saja.`;
 
 const emailList = z.array(z.email()).min(1);
+
+const customAttachment = z.object({
+  filename: z
+    .string()
+    .min(1)
+    .max(120)
+    .describe("Nama file di email, mis. 'Cover_Letter_Azhar_Salsabila_Naqiyah.pdf'. Ekstensi menentukan format bila 'format' kosong."),
+  format: z
+    .enum(["pdf", "txt"])
+    .optional()
+    .describe("pdf = teks dirender jadi PDF A4 rapi (untuk dokumen formal seperti cover letter); txt = file teks apa adanya. Default: dari ekstensi, selain itu pdf."),
+  content: z
+    .string()
+    .min(20)
+    .describe("Isi lengkap dokumen dalam teks polos. Paragraf dipisah baris kosong; baris '# Judul' dicetak tebal besar; baris '**teks**' dicetak tebal."),
+});
+type CustomAttachment = z.infer<typeof customAttachment>;
+
+async function renderCustom(a: CustomAttachment, author?: string): Promise<LoadedAttachment> {
+  const base = a.filename.replace(/[\\/\r\n"]/g, "_").trim();
+  const stem = base.replace(/\.[^.]+$/, "");
+  const ext = base.includes(".") ? base.split(".").pop()!.toLowerCase() : "";
+  const format = a.format ?? (ext === "txt" ? "txt" : "pdf");
+  if (format === "txt") {
+    return { filename: `${stem}.txt`, mimeType: "text/plain", content: Buffer.from(a.content, "utf8") };
+  }
+  return {
+    filename: `${stem}.pdf`,
+    mimeType: "application/pdf",
+    content: await textToPdf(a.content, stem.replace(/_/g, " "), author),
+  };
+}
 
 const draftFields = {
   to: emailList.describe("Alamat email tujuan (HR/rekruter) dari iklan lowongan"),
@@ -46,14 +78,17 @@ const draftFields = {
     .array(z.string())
     .optional()
     .describe("Daftar 'kunci' lampiran dari profil (mis. ['cv','portofolio']). Kosongkan untuk memakai lampiran default; isi [] untuk tanpa lampiran."),
-  uploaded_files: z
-    .array(z.string())
-    .optional()
-    .describe("Nama file yang sudah diupload pengguna lewat halaman upload (lihat list_uploaded_files), mis. ['Cover_Letter_PT_ABC.pdf']. Ditambahkan ke lampiran profil."),
   extra_attachment_urls: z
     .array(z.url())
     .optional()
     .describe("URL https tambahan untuk diunduh & dilampirkan (opsional)"),
+  custom_attachments: z
+    .array(customAttachment)
+    .max(5)
+    .optional()
+    .describe(
+      "Lampiran yang ditulis khusus untuk lamaran ini (cover letter/surat lamaran, motivation letter, esai, jawaban pertanyaan rekruter). Tulis isinya lengkap; server membuatkan PDF. Digabung dengan lampiran profil (attachments).",
+    ),
 };
 
 const json = (data: unknown) => ({
@@ -65,7 +100,7 @@ async function resolveAttachments(
   profile: Profile,
   keys: string[] | undefined,
   urls: string[] | undefined,
-  uploaded: string[] | undefined,
+  custom: CustomAttachment[] | undefined,
 ): Promise<{ files: LoadedAttachment[]; used: string[] }> {
   const specs = profile.lampiran ?? [];
   const chosen =
@@ -77,9 +112,9 @@ async function resolveAttachments(
           return s;
         });
   const files = await Promise.all(chosen.map(loadAttachment));
-  const fromUploads = await Promise.all((uploaded ?? []).map(loadUpload));
+  const generated = await Promise.all((custom ?? []).map((c) => renderCustom(c, profile.nama_lengkap)));
   const extra = await Promise.all((urls ?? []).map(loadExtraUrl));
-  const all = [...files, ...fromUploads, ...extra];
+  const all = [...generated, ...files, ...extra];
   const total = all.reduce((n, f) => n + f.content.length, 0);
   if (total > 24 * 1024 * 1024) throw new Error("Total lampiran melebihi 24MB (batas Gmail 25MB).");
   return { files: all, used: all.map((f) => `${f.filename} (${Math.round(f.content.length / 1024)} KB)`) };
@@ -94,15 +129,15 @@ async function buildRaw(
     subject: string;
     body: string;
     attachments?: string[];
-    uploaded_files?: string[];
     extra_attachment_urls?: string[];
+    custom_attachments?: CustomAttachment[];
   },
 ) {
   const { files, used } = await resolveAttachments(
     profile,
     args.attachments,
     args.extra_attachment_urls,
-    args.uploaded_files,
+    args.custom_attachments,
   );
   const raw = buildMime({
     from: {
@@ -153,7 +188,7 @@ export const mcpHandler = createMcpHandler(
       {
         title: "Buat draft email lamaran di Gmail",
         description:
-          "Membuat DRAFT email lamaran kerja di Gmail pengguna beserta lampiran: file dari profil (default: CV), file yang diupload pengguna (uploaded_files, mis. cover letter), dan/atau URL. Tidak mengirim email — pengguna meninjau & mengirim sendiri dari Gmail. Mengembalikan draft_id dan link ke draft.",
+          "Membuat DRAFT email lamaran kerja di Gmail pengguna beserta lampiran: file dari profil (default: CV), dokumen custom yang ditulis Claude lalu dijadikan PDF oleh server (custom_attachments, mis. cover letter), dan/atau URL. Tidak mengirim email — pengguna meninjau & mengirim sendiri dari Gmail. Mengembalikan draft_id dan link ke draft.",
         inputSchema: z.object({
           ...draftFields,
           company: z.string().optional().describe("Nama perusahaan (untuk ringkasan)"),
@@ -256,50 +291,6 @@ export const mcpHandler = createMcpHandler(
         try {
           await deleteDraft(draft_id);
           return json({ status: "Draft dihapus", draft_id });
-        } catch (e) {
-          return fail((e as Error).message);
-        }
-      },
-    );
-
-    server.registerTool(
-      "list_uploaded_files",
-      {
-        title: "Daftar file upload",
-        description:
-          "Menampilkan file lampiran yang sudah diupload pengguna (cover letter, portofolio, gambar, dll.) beserta link halaman upload. Pakai nama file dari sini untuk parameter uploaded_files.",
-        inputSchema: z.object({}),
-        annotations: { readOnlyHint: true },
-      },
-      async () => {
-        const halaman_upload = uploadPageUrl();
-        if (!blobConfigured()) {
-          return json({
-            status: "Penyimpanan upload belum aktif (Vercel Blob belum terhubung ke project).",
-            halaman_upload,
-          });
-        }
-        try {
-          const files = await listUploads();
-          return json({ halaman_upload, jumlah: files.length, files });
-        } catch (e) {
-          return fail((e as Error).message);
-        }
-      },
-    );
-
-    server.registerTool(
-      "delete_uploaded_file",
-      {
-        title: "Hapus file upload",
-        description: "Menghapus permanen satu file upload. Hanya lakukan bila pengguna memintanya secara eksplisit.",
-        inputSchema: z.object({ name: z.string().min(1).describe("Nama file persis dari list_uploaded_files") }),
-        annotations: { readOnlyHint: false, destructiveHint: true, idempotentHint: true },
-      },
-      async ({ name }) => {
-        try {
-          await deleteUpload(name);
-          return json({ status: "File dihapus", name });
         } catch (e) {
           return fail((e as Error).message);
         }
