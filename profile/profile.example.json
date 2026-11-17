@@ -1,0 +1,75 @@
+{
+  "nama_lengkap": "Budi Santoso",
+  "email": "budi.santoso@gmail.com",
+  "telepon": "+62 812-3456-7890",
+  "domisili": "Jakarta Selatan",
+  "linkedin": "https://linkedin.com/in/budisantoso",
+  "portofolio": "https://budisantoso.dev",
+  "github": "https://github.com/budisantoso",
+
+  "headline": "Backend Engineer dengan 4 tahun pengalaman di fintech dan e-commerce",
+  "ringkasan": "Berpengalaman membangun layanan backend berskala besar dengan Go dan Node.js, terbiasa dengan arsitektur microservices, PostgreSQL, Redis, dan Kafka. Pernah memimpin migrasi sistem pembayaran yang menurunkan latensi 40%.",
+
+  "pengalaman": [
+    {
+      "posisi": "Backend Engineer",
+      "perusahaan": "PT Fintech Maju",
+      "periode": "2023 - sekarang",
+      "pencapaian": [
+        "Memimpin migrasi payment gateway ke arsitektur event-driven (Kafka), latensi p95 turun 40%",
+        "Membangun service rekonsiliasi otomatis yang memproses 2 juta transaksi/hari",
+        "Mentoring 3 engineer junior"
+      ]
+    },
+    {
+      "posisi": "Software Engineer",
+      "perusahaan": "PT Toko Online Nusantara",
+      "periode": "2021 - 2023",
+      "pencapaian": [
+        "Mengembangkan API katalog produk (Node.js, PostgreSQL) untuk 500 ribu SKU",
+        "Menurunkan biaya infrastruktur 25% lewat optimasi query dan caching Redis"
+      ]
+    }
+  ],
+
+  "pendidikan": [
+    { "gelar": "S1 Teknik Informatika", "institusi": "Universitas Indonesia", "tahun": "2021", "ipk": "3.62" }
+  ],
+
+  "keahlian": {
+    "teknis": ["Go", "Node.js", "TypeScript", "PostgreSQL", "Redis", "Kafka", "Docker", "Kubernetes", "AWS"],
+    "non_teknis": ["Komunikasi", "Mentoring", "Problem solving"],
+    "bahasa": ["Indonesia (native)", "Inggris (profesional, TOEFL ITP 580)"]
+  },
+
+  "sertifikasi": ["AWS Certified Developer – Associate (2024)"],
+
+  "preferensi_kerja": {
+    "posisi_target": ["Backend Engineer", "Senior Backend Engineer", "Software Engineer"],
+    "lokasi": ["Jakarta", "Remote", "Hybrid"],
+    "ekspektasi_gaji": "Rp 22.000.000 - 28.000.000 / bulan (dinegosiasikan)",
+    "ketersediaan": "Notice period 1 bulan"
+  },
+
+  "lampiran": [
+    { "kunci": "cv", "file": "CV_Budi_Santoso.pdf", "deskripsi": "CV terbaru (Bahasa Inggris)", "default": true },
+    { "kunci": "cv_id", "file": "CV_Budi_Santoso_ID.pdf", "deskripsi": "CV versi Bahasa Indonesia" },
+    { "kunci": "portofolio", "url": "https://example.com/portofolio.pdf", "nama_file": "Portofolio_Budi_Santoso.pdf", "deskripsi": "Portofolio proyek" }
+  ],
+
+  "gaya_email": {
+    "bahasa_default": "Ikuti bahasa iklan lowongan (Indonesia atau Inggris)",
+    "nada": "Profesional, hangat, percaya diri, tidak berlebihan",
+    "panjang": "150-250 kata untuk badan email",
+    "format_subjek": "Lamaran [Posisi] - [Nama Lengkap]  (ikuti format subjek dari iklan jika ada)",
+    "aturan": [
+      "Sebutkan sumber info lowongan jika diketahui",
+      "Pilih 2-3 pencapaian paling relevan dengan kualifikasi lowongan, sertakan angka",
+      "Jangan mengarang pengalaman/keahlian yang tidak ada di profil",
+      "Jangan cantumkan ekspektasi gaji kecuali diminta di iklan",
+      "Sebutkan lampiran yang disertakan",
+      "Tutup dengan ajakan untuk wawancara dan tanda tangan lengkap"
+    ],
+    "tanda_tangan": "Hormat saya,\nBudi Santoso\n+62 812-3456-7890 | budi.santoso@gmail.com\nlinkedin.com/in/budisantoso"
+  }
+}
